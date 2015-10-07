@@ -40,6 +40,10 @@ public class App {
         xnorGateComponent.setScale(scale);
         virtualCircuit.addComponent(xnorGateComponent);
 
+        NotGateComponent notGateComponent = new NotGateComponent(80 * scale, 150 * scale);
+        notGateComponent.setScale(scale);
+        virtualCircuit.addComponent(notGateComponent);
+
         ElecCircuitSim sim = new ElecCircuitSim("Awesome Title", virtualCircuit);
         sim.setVisible(true);
     }
