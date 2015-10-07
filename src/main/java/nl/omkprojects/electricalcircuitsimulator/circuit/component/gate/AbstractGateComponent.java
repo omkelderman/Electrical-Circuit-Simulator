@@ -52,12 +52,33 @@ public abstract class AbstractGateComponent extends AbstractCircuitComponent {
     public final void render(GraphicsHelper g) {
         // first render gate
         g.setColor(color);
+        renderInputLines(g);
         renderGateComponent(g);
+        renderOutputLines(g);
         g.resetColor();
 
         // render PinComponent objects after that
         super.render(g);
     }
 
+    private void renderInputLines(GraphicsHelper g) {
+        for (int i = 0; i < inputPins.length; i++) {
+            g.drawLine(inputPins[i].getPositionX() + 2, inputPins[i].getPositionY(), getInputLineX(i), inputPins[i].getPositionY());
+        }
+    }
+
+
     protected abstract void renderGateComponent(GraphicsHelper g);
+
+    private void renderOutputLines(GraphicsHelper g) {
+        g.drawLine(getOutputLineX(), outputPin.getPositionY(), outputPin.getPositionX() - 2, outputPin.getPositionY());
+    }
+
+    protected float getInputLineX(@SuppressWarnings("unused") int i) {
+        return -10;
+    }
+
+    protected float getOutputLineX() {
+        return 10;
+    }
 }

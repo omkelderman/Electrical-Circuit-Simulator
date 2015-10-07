@@ -18,18 +18,15 @@ public class NandGateComponent extends MultiInputGateComponent {
 
     @Override
     public void renderGateComponent(GraphicsHelper g) {
-        // input-lines
-        g.drawLine(-20, -5, -10, -5);
-        g.drawLine(-20, 5, -10, 5);
-
-        // component
         g.drawLine(-10, -10, -10, 10);
         g.drawLine(-10, -10, 0, -10);
         g.drawLine(-10, 10, 0, 10);
         g.drawCircle(0, 0, 10, -90, 90);
         g.drawCircle(12, 0, 2);
+    }
 
-        // output-line
-        g.drawLine(14, 0, 20, 0);
+    @Override
+    protected float getOutputLineX() {
+        return 14;
     }
 }
