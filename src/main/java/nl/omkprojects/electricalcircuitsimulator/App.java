@@ -4,8 +4,6 @@ import nl.omkprojects.electricalcircuitsimulator.circuit.VirtualCircuit;
 import nl.omkprojects.electricalcircuitsimulator.circuit.component.gate.*;
 import nl.omkprojects.electricalcircuitsimulator.gui.ElecCircuitSim;
 
-import java.awt.*;
-
 /**
  * Created by Olle on 06-10-2015.
  */
@@ -17,7 +15,6 @@ public class App {
 
         AndGateComponent andGateComponent = new AndGateComponent(30 * scale, 30 * scale);
         andGateComponent.setScale(scale);
-        andGateComponent.setColor(Color.GREEN);
         virtualCircuit.addComponent(andGateComponent);
 
         NandGateComponent nandGateComponent = new NandGateComponent(80 * scale, 30 * scale);
@@ -34,6 +31,7 @@ public class App {
 
         XorGateComponent xorGateComponent = new XorGateComponent(30 * scale, 110 * scale);
         xorGateComponent.setScale(scale);
+        xorGateComponent.setAngle(45);
         virtualCircuit.addComponent(xorGateComponent);
 
         XnorGateComponent xnorGateComponent = new XnorGateComponent(80 * scale, 110 * scale);

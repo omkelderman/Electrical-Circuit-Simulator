@@ -28,7 +28,34 @@ public class DrawPositionInfo {
         this.angle = angle;
     }
 
+    public float getAbsoluteScale(float f) {
+        return f * this.scale;
+    }
+
+    public float getAbsoluteAngle(float a) {
+        return a - this.angle;
+    }
+
+    public XY getAbsoluteXY(float x, float y) {
+        double angle = Math.atan2(y, x) + Math.toRadians(this.angle);
+        double radius = Math.sqrt(x * x + y * y);
+        x = getAbsoluteScale((float) (Math.cos(angle) * radius)) + this.x;
+        y = getAbsoluteScale((float) (Math.sin(angle) * radius)) + this.y;
+        return new XY(x, y);
+    }
+
     public static DrawPositionInfo add(DrawPositionInfo base, DrawPositionInfo add) {
-        return new DrawPositionInfo(base.x + add.x * base.scale, base.y + add.y * base.scale, base.scale * add.scale, base.angle + add.angle);
+        XY xy = base.getAbsoluteXY(add.x, add.y);
+        return new DrawPositionInfo(xy.x, xy.y, base.getAbsoluteScale(add.scale), base.getAbsoluteAngle(add.angle));
+    }
+
+    public static class XY {
+        float x;
+        float y;
+
+        public XY(float x, float y) {
+            this.x = x;
+            this.y = y;
+        }
     }
 }

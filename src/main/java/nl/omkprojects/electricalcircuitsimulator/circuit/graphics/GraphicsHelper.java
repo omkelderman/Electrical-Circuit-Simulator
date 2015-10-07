@@ -49,18 +49,6 @@ public class GraphicsHelper {
         relativeDrawPosition = relativeHistory.pop();
     }
 
-    private float getAbsoluteScale(float f) {
-        return f * relativeDrawPosition.scale;
-    }
-
-    private float getAbsoluteX(float x) {
-        return getAbsoluteScale(x) + relativeDrawPosition.x;
-    }
-
-    private float getAbsoluteY(float y) {
-        return getAbsoluteScale(y) + relativeDrawPosition.y;
-    }
-
     private void drawAndMaybeFill(Shape s, boolean fill) {
         g2.draw(s);
         if (fill) g2.fill(s);
@@ -71,30 +59,28 @@ public class GraphicsHelper {
     }
 
     public void drawCircle(float x, float y, float radius, boolean fill) {
-        x = getAbsoluteX(x);
-        y = getAbsoluteY(y);
-        radius = getAbsoluteScale(radius);
-        drawAndMaybeFill(new Ellipse2D.Float(x - radius, y - radius, radius * 2, radius * 2), fill);
+        DrawPositionInfo.XY xy = relativeDrawPosition.getAbsoluteXY(x, y);
+        radius = relativeDrawPosition.getAbsoluteScale(radius);
+        drawAndMaybeFill(new Ellipse2D.Float(xy.x - radius, xy.y - radius, radius * 2, radius * 2), fill);
     }
 
-    public void drawCircle(float x, float y, float radius, float start, float end) {
-        drawCircle(x, y, radius, start, end, false);
+    public void drawCircle(float x, float y, float radius, float startAngle, float endAngle) {
+        drawCircle(x, y, radius, startAngle, endAngle, false);
     }
 
-    public void drawCircle(float x, float y, float radius, float start, float end, boolean fill) {
-        float extent = end - start;
-        x = getAbsoluteX(x);
-        y = getAbsoluteY(y);
-        radius = getAbsoluteScale(radius);
-        drawAndMaybeFill(new Arc2D.Float(x - radius, y - radius, radius * 2, radius * 2, start, extent, Arc2D.OPEN), fill);
+    public void drawCircle(float x, float y, float radius, float startAngle, float endAngle, boolean fill) {
+        startAngle = relativeDrawPosition.getAbsoluteAngle(startAngle);
+        endAngle = relativeDrawPosition.getAbsoluteAngle(endAngle);
+        float extentAngle = endAngle - startAngle;
+        DrawPositionInfo.XY xy = relativeDrawPosition.getAbsoluteXY(x, y);
+        radius = relativeDrawPosition.getAbsoluteScale(radius);
+        drawAndMaybeFill(new Arc2D.Float(xy.x - radius, xy.y - radius, radius * 2, radius * 2, startAngle, extentAngle, Arc2D.OPEN), fill);
     }
 
     public void drawLine(float x1, float y1, float x2, float y2) {
-        x1 = getAbsoluteX(x1);
-        y1 = getAbsoluteY(y1);
-        x2 = getAbsoluteX(x2);
-        y2 = getAbsoluteY(y2);
-        g2.draw(new Line2D.Float(x1, y1, x2, y2));
+        DrawPositionInfo.XY xy1 = relativeDrawPosition.getAbsoluteXY(x1, y1);
+        DrawPositionInfo.XY xy2 = relativeDrawPosition.getAbsoluteXY(x2, y2);
+        g2.draw(new Line2D.Float(xy1.x, xy1.y, xy2.x, xy2.y));
     }
 
 //    public void drawLine(float x1, float y1, float x2, float y2, float thickness) {
