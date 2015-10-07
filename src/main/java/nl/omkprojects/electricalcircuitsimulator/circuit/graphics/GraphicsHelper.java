@@ -11,9 +11,9 @@ import java.util.Stack;
  */
 public class GraphicsHelper {
     private final Graphics2D g2;
-    private final RelativeInfo relativeInfo = new RelativeInfo();
-    private final Stack<RelativeInfo> relativeHistory = new Stack<>();
+    private final Stack<DrawPositionInfo> relativeHistory = new Stack<>();
     private final Stack<Color> colorHistory = new Stack<>();
+    private DrawPositionInfo relativeDrawPosition = new DrawPositionInfo();
 
     public GraphicsHelper(Graphics2D g2) {
         this.g2 = g2;
@@ -34,33 +34,31 @@ public class GraphicsHelper {
         g2.setColor(colorHistory.pop());
     }
 
-    public void setRelativePositioning(float x, float y, float scale) {
+    public void setRelativePositioning(DrawPositionInfo info) {
         // create copy and push in stack
-        relativeHistory.push(new RelativeInfo(relativeInfo));
+        relativeHistory.push(relativeDrawPosition);
 
         // update current info
-        relativeInfo.relativeX += getAbsoluteScale(x);
-        relativeInfo.relativeY += getAbsoluteScale(y);
-        relativeInfo.relativeScale *= scale;
+        relativeDrawPosition = DrawPositionInfo.add(relativeDrawPosition, info);
     }
 
     public void resetRelativePositioning() {
         if (relativeHistory.isEmpty()) throw new IllegalStateException("History is empty, cannot reset!");
 
         // pop from stack and update current info
-        relativeInfo.set(relativeHistory.pop());
+        relativeDrawPosition = relativeHistory.pop();
     }
 
     private float getAbsoluteScale(float f) {
-        return f * relativeInfo.relativeScale;
-    }
-
-    private float getAbsoluteY(float y) {
-        return getAbsoluteScale(y) + relativeInfo.relativeY;
+        return f * relativeDrawPosition.scale;
     }
 
     private float getAbsoluteX(float x) {
-        return getAbsoluteScale(x) + relativeInfo.relativeX;
+        return getAbsoluteScale(x) + relativeDrawPosition.x;
+    }
+
+    private float getAbsoluteY(float y) {
+        return getAbsoluteScale(y) + relativeDrawPosition.y;
     }
 
     private void drawAndMaybeFill(Shape s, boolean fill) {
@@ -104,25 +102,4 @@ public class GraphicsHelper {
 //        drawCircle(x2, y2, thickness, true);
 //    }
 
-    private class RelativeInfo {
-        private float relativeX;
-        private float relativeY;
-        private float relativeScale;
-
-        public RelativeInfo() {
-            this.relativeX = 0;
-            this.relativeY = 0;
-            this.relativeScale = 1;
-        }
-
-        public RelativeInfo(RelativeInfo info) {
-            set(info);
-        }
-
-        public void set(RelativeInfo info) {
-            this.relativeX = info.relativeX;
-            this.relativeY = info.relativeY;
-            this.relativeScale = info.relativeScale;
-        }
-    }
 }

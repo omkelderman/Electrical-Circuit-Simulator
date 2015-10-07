@@ -1,5 +1,6 @@
 package nl.omkprojects.electricalcircuitsimulator.circuit.component;
 
+import nl.omkprojects.electricalcircuitsimulator.circuit.graphics.DrawPositionInfo;
 import nl.omkprojects.electricalcircuitsimulator.circuit.graphics.GraphicsHelper;
 import nl.omkprojects.electricalcircuitsimulator.circuit.graphics.IPaintable;
 
@@ -10,17 +11,17 @@ import java.util.List;
  * Created by Olle on 06-10-2015.
  */
 public abstract class AbstractCircuitComponent implements IPaintable {
-    protected float positionX;
-    protected float positionY;
-    protected float scale;
+    private DrawPositionInfo drawPositionInfo;
 
     private List<AbstractCircuitComponent> relativeComponentsList;
 
     public AbstractCircuitComponent(float positionX, float positionY) {
-        this.positionX = positionX;
-        this.positionY = positionY;
-        this.scale = 1;
         this.relativeComponentsList = new ArrayList<>();
+        this.drawPositionInfo = new DrawPositionInfo(positionX, positionY);
+    }
+
+    public DrawPositionInfo getDrawPositionInfo() {
+        return drawPositionInfo;
     }
 
     protected void addRelativeComponent(AbstractCircuitComponent component) {
@@ -28,27 +29,35 @@ public abstract class AbstractCircuitComponent implements IPaintable {
     }
 
     public float getPositionX() {
-        return positionX;
+        return drawPositionInfo.x;
     }
 
     public void setPositionX(float positionX) {
-        this.positionX = positionX;
+        this.drawPositionInfo.x = positionX;
     }
 
     public float getPositionY() {
-        return positionY;
+        return drawPositionInfo.y;
     }
 
     public void setPositionY(float positionY) {
-        this.positionY = positionY;
+        this.drawPositionInfo.y = positionY;
     }
 
     public float getScale() {
-        return scale;
+        return drawPositionInfo.scale;
     }
 
     public void setScale(float scale) {
-        this.scale = scale;
+        this.drawPositionInfo.scale = scale;
+    }
+
+    public float getAngle() {
+        return drawPositionInfo.angle;
+    }
+
+    public void setAngle(float angle) {
+        this.drawPositionInfo.angle = angle;
     }
 
     @Override
@@ -58,7 +67,7 @@ public abstract class AbstractCircuitComponent implements IPaintable {
 
         // render relative components
         for (AbstractCircuitComponent component : relativeComponentsList) {
-            g.setRelativePositioning(component.getPositionX(), component.getPositionY(), component.getScale());
+            g.setRelativePositioning(component.drawPositionInfo);
             component.render(g);
             g.resetRelativePositioning();
         }

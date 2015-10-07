@@ -25,7 +25,7 @@ public class VirtualCircuit implements IPaintable {
     @Override
     public void render(GraphicsHelper g) {
         for (AbstractCircuitComponent component : componentList) {
-            g.setRelativePositioning(component.getPositionX(), component.getPositionY(), component.getScale());
+            g.setRelativePositioning(component.getDrawPositionInfo());
             component.render(g);
             g.resetRelativePositioning();
         }
