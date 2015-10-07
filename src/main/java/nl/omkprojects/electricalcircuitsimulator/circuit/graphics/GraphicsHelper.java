@@ -39,8 +39,8 @@ public class GraphicsHelper {
         relativeHistory.push(new RelativeInfo(relativeInfo));
 
         // update current info
-        relativeInfo.relativeX += x * relativeInfo.relativeScale;
-        relativeInfo.relativeY += y * relativeInfo.relativeScale;
+        relativeInfo.relativeX += getAbsoluteScale(x);
+        relativeInfo.relativeY += getAbsoluteScale(y);
         relativeInfo.relativeScale *= scale;
     }
 
@@ -49,6 +49,18 @@ public class GraphicsHelper {
 
         // pop from stack and update current info
         relativeInfo.set(relativeHistory.pop());
+    }
+
+    private float getAbsoluteScale(float f) {
+        return f * relativeInfo.relativeScale;
+    }
+
+    private float getAbsoluteY(float y) {
+        return getAbsoluteScale(y) + relativeInfo.relativeY;
+    }
+
+    private float getAbsoluteX(float x) {
+        return getAbsoluteScale(x) + relativeInfo.relativeX;
     }
 
     private void drawAndMaybeFill(Shape s, boolean fill) {
@@ -61,9 +73,9 @@ public class GraphicsHelper {
     }
 
     public void drawCircle(float x, float y, float radius, boolean fill) {
-        x = x * relativeInfo.relativeScale + relativeInfo.relativeX;
-        y = y * relativeInfo.relativeScale + relativeInfo.relativeY;
-        radius = radius * relativeInfo.relativeScale;
+        x = getAbsoluteX(x);
+        y = getAbsoluteY(y);
+        radius = getAbsoluteScale(radius);
         drawAndMaybeFill(new Ellipse2D.Float(x - radius, y - radius, radius * 2, radius * 2), fill);
     }
 
@@ -73,17 +85,17 @@ public class GraphicsHelper {
 
     public void drawCircle(float x, float y, float radius, float start, float end, boolean fill) {
         float extent = end - start;
-        x = x * relativeInfo.relativeScale + relativeInfo.relativeX;
-        y = y * relativeInfo.relativeScale + relativeInfo.relativeY;
-        radius = radius * relativeInfo.relativeScale;
+        x = getAbsoluteX(x);
+        y = getAbsoluteY(y);
+        radius = getAbsoluteScale(radius);
         drawAndMaybeFill(new Arc2D.Float(x - radius, y - radius, radius * 2, radius * 2, start, extent, Arc2D.OPEN), fill);
     }
 
     public void drawLine(float x1, float y1, float x2, float y2) {
-        x1 = x1 * relativeInfo.relativeScale + relativeInfo.relativeX;
-        y1 = y1 * relativeInfo.relativeScale + relativeInfo.relativeY;
-        x2 = x2 * relativeInfo.relativeScale + relativeInfo.relativeX;
-        y2 = y2 * relativeInfo.relativeScale + relativeInfo.relativeY;
+        x1 = getAbsoluteX(x1);
+        y1 = getAbsoluteY(y1);
+        x2 = getAbsoluteX(x2);
+        y2 = getAbsoluteY(y2);
         g2.draw(new Line2D.Float(x1, y1, x2, y2));
     }
 
