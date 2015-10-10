@@ -25,6 +25,15 @@ public class VirtualCircuit implements IPaintable {
         return drawPositionInfo;
     }
 
+    public void setPosition(float x, float y) {
+        drawPositionInfo.x = x;
+        drawPositionInfo.y = y;
+    }
+
+    public void zoom(float zoom) {
+        this.drawPositionInfo.scale -= (zoom / 50);
+    }
+
     public void addComponent(AbstractCircuitComponent component) {
         componentList.add(component);
     }
