@@ -14,7 +14,8 @@ import java.util.List;
  * Created by Olle on 06-10-2015.
  */
 public class VirtualCircuit implements IPaintable {
-    public static final int ZOOM_SPEED = 50;
+    private static final float ZOOM_CONSTANT = 1.05f;
+
     private List<AbstractCircuitComponent> componentList;
     private DrawPositionInfo drawPositionInfo;
 
@@ -32,22 +33,20 @@ public class VirtualCircuit implements IPaintable {
         drawPositionInfo.y = y;
     }
 
-    public void zoom(float zoom, Point point) {
-        float actualZoom = zoom / ZOOM_SPEED;
-        if (this.drawPositionInfo.scale <= actualZoom) {
-            // ignore requests that tries to set scale to 0 or less
-            return;
-        }
+    public void zoom(int zoom, Point point) {
+        // set new scale
+        float zoomModifier = (float) Math.pow(ZOOM_CONSTANT, zoom);
+        this.drawPositionInfo.scale /= zoomModifier;
 
-        float x = point.x - drawPositionInfo.x;
-        float y = point.y - drawPositionInfo.y;
+        // correct position to place the point that was below the mouse-pointer again below the mouse-pointer
 
-        float deltaScale = actualZoom / drawPositionInfo.scale;
-        this.drawPositionInfo.scale -= actualZoom;
+        // so yeah, turns out, after doing the math this is correct:
+        float deltaScale = 1 - (1 / zoomModifier);
 
-        float deltaX = x * deltaScale;
-        float deltaY = y * deltaScale;
-
+        float realX = point.x - drawPositionInfo.x;
+        float realY = point.y - drawPositionInfo.y;
+        float deltaX = realX * deltaScale;
+        float deltaY = realY * deltaScale;
         this.drawPositionInfo.x += deltaX;
         this.drawPositionInfo.y += deltaY;
     }
