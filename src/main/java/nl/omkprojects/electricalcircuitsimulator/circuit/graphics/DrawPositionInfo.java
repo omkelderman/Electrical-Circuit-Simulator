@@ -49,13 +49,4 @@ public class DrawPositionInfo {
         return new DrawPositionInfo(xy.x, xy.y, base.getAbsoluteScale(add.scale), base.getAbsoluteAngle(add.angle));
     }
 
-    public static class XY {
-        float x;
-        float y;
-
-        public XY(float x, float y) {
-            this.x = x;
-            this.y = y;
-        }
-    }
 }

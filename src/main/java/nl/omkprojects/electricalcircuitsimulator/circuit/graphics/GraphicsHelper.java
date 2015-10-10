@@ -59,7 +59,7 @@ public class GraphicsHelper {
     }
 
     public void drawCircle(float x, float y, float radius, boolean fill) {
-        DrawPositionInfo.XY xy = relativeDrawPosition.getAbsoluteXY(x, y);
+        XY xy = relativeDrawPosition.getAbsoluteXY(x, y);
         radius = relativeDrawPosition.getAbsoluteScale(radius);
         drawAndMaybeFill(new Ellipse2D.Float(xy.x - radius, xy.y - radius, radius * 2, radius * 2), fill);
     }
@@ -76,14 +76,14 @@ public class GraphicsHelper {
         endAngle = -endAngle + 90;
 
         float extentAngle = endAngle - startAngle;
-        DrawPositionInfo.XY xy = relativeDrawPosition.getAbsoluteXY(x, y);
+        XY xy = relativeDrawPosition.getAbsoluteXY(x, y);
         radius = relativeDrawPosition.getAbsoluteScale(radius);
         drawAndMaybeFill(new Arc2D.Float(xy.x - radius, xy.y - radius, radius * 2, radius * 2, startAngle, extentAngle, Arc2D.OPEN), fill);
     }
 
     public void drawLine(float x1, float y1, float x2, float y2) {
-        DrawPositionInfo.XY xy1 = relativeDrawPosition.getAbsoluteXY(x1, y1);
-        DrawPositionInfo.XY xy2 = relativeDrawPosition.getAbsoluteXY(x2, y2);
+        XY xy1 = relativeDrawPosition.getAbsoluteXY(x1, y1);
+        XY xy2 = relativeDrawPosition.getAbsoluteXY(x2, y2);
         g2.draw(new Line2D.Float(xy1.x, xy1.y, xy2.x, xy2.y));
     }
 
