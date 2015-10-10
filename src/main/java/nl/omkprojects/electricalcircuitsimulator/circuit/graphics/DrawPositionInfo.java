@@ -33,7 +33,7 @@ public class DrawPositionInfo {
     }
 
     public float getAbsoluteAngle(float a) {
-        return a - this.angle;
+        return a + this.angle;
     }
 
     public XY getAbsoluteXY(float x, float y) {

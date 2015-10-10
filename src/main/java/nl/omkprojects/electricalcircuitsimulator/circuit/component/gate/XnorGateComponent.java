@@ -18,11 +18,11 @@ public class XnorGateComponent extends MultiInputGateComponent {
 
     @Override
     public void renderGateComponent(GraphicsHelper g) {
-        g.drawCircle(-24, 0, 14.87f, -42.27f, 42.27f);
-        g.drawCircle(-27, 0, 14.87f, -42.27f, 42.27f);
+        g.drawCircle(-24, 0, 14.87f, 47.73f, 132.27f);
+        g.drawCircle(-27, 0, 14.87f, 47.73f, 132.27f);
         g.drawLine(-13, -10, 0, -10);
         g.drawLine(-13, 10, 0, 10);
-        g.drawCircle(0, 0, 10, -90, 90);
+        g.drawCircle(0, 0, 10, 0, 180);
         g.drawCircle(12, 0, 2);
     }
 

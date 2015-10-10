@@ -71,6 +71,10 @@ public class GraphicsHelper {
     public void drawCircle(float x, float y, float radius, float startAngle, float endAngle, boolean fill) {
         startAngle = relativeDrawPosition.getAbsoluteAngle(startAngle);
         endAngle = relativeDrawPosition.getAbsoluteAngle(endAngle);
+
+        startAngle = -startAngle + 90;
+        endAngle = -endAngle + 90;
+
         float extentAngle = endAngle - startAngle;
         DrawPositionInfo.XY xy = relativeDrawPosition.getAbsoluteXY(x, y);
         radius = relativeDrawPosition.getAbsoluteScale(radius);

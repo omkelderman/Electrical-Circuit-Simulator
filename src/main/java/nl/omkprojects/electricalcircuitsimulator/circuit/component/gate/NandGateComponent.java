@@ -21,7 +21,7 @@ public class NandGateComponent extends MultiInputGateComponent {
         g.drawLine(-10, -10, -10, 10);
         g.drawLine(-10, -10, 0, -10);
         g.drawLine(-10, 10, 0, 10);
-        g.drawCircle(0, 0, 10, -90, 90);
+        g.drawCircle(0, 0, 10, 0, 180);
         g.drawCircle(12, 0, 2);
     }
 
