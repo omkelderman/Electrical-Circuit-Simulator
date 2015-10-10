@@ -51,8 +51,7 @@ public class CircuitPanel extends JPanel {
     }
 
     private void mouseWheelMoved(MouseWheelEvent e) {
-        virtualCircuit.zoom((float) e.getPreciseWheelRotation());
-        // TODO zoom at mouse location
+        virtualCircuit.zoom((float) e.getPreciseWheelRotation(), e.getPoint());
         repaint();
     }
 
