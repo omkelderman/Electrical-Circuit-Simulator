@@ -17,10 +17,6 @@ public abstract class AbstractCircuitComponent implements IPaintable {
         this.drawPositionInfo = new DrawPositionInfo(positionX, positionY);
     }
 
-    public DrawPositionInfo getDrawPositionInfo() {
-        return drawPositionInfo;
-    }
-
     protected void addRelativeComponent(AbstractCircuitComponent component) {
         relativeComponentsList.add(component);
     }
@@ -59,15 +55,25 @@ public abstract class AbstractCircuitComponent implements IPaintable {
 
     @Override
     public void render(GraphicsWrapper g) {
-        // DEBUG: draw anchor-point
-        //g.drawCircle(0, 0, 2, true);
+        // set relative position
+        g.setRelativePositioning(drawPositionInfo);
+
+        // render the component itself
+        renderComponent(g);
 
         // render relative components
         for (AbstractCircuitComponent component : relativeComponentsList) {
-            g.setRelativePositioning(component.drawPositionInfo);
             component.render(g);
-            g.resetRelativePositioning();
         }
+
+        // DEBUG: draw anchor-point
+//        g.setColor(Color.BLUE);
+//        g.drawCircle(0, 0, 2, true);
+//        g.resetColor();
+
+        // reset relative position
+        g.resetRelativePositioning();
     }
 
+    protected abstract void renderComponent(GraphicsWrapper g);
 }

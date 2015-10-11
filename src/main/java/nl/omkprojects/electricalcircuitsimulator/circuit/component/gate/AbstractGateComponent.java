@@ -46,16 +46,12 @@ public abstract class AbstractGateComponent extends AbstractCircuitComponent {
     }
 
     @Override
-    public final void render(GraphicsWrapper g) {
-        // first render gate
+    public final void renderComponent(GraphicsWrapper g) {
         g.setColor(color);
         renderInputLines(g);
         renderGateComponent(g);
         renderOutputLines(g);
         g.resetColor();
-
-        // render PinComponent objects after that
-        super.render(g);
     }
 
     private void renderInputLines(GraphicsWrapper g) {

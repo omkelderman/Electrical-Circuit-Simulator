@@ -54,9 +54,7 @@ public class VirtualCircuit {
     public void render(Graphics2D graphics2D) {
         GraphicsWrapper g = new GraphicsWrapper(graphics2D, drawPositionInfo);
         for (AbstractCircuitComponent component : componentList) {
-            g.setRelativePositioning(component.getDrawPositionInfo());
             component.render(g);
-            g.resetRelativePositioning();
         }
     }
 }
