@@ -6,9 +6,6 @@ import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
 import java.util.Stack;
 
-/**
- * Created by Olle on 06-10-2015.
- */
 public class GraphicsWrapper {
     private final Graphics2D graphics2D;
     private final Stack<DrawPositionInfo> relativeHistory = new Stack<>();

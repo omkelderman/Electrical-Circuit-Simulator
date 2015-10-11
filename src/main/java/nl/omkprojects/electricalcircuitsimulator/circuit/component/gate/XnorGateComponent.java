@@ -4,9 +4,6 @@ import nl.omkprojects.electricalcircuitsimulator.circuit.graphics.GraphicsWrappe
 
 import java.awt.*;
 
-/**
- * Created by Olle on 06-10-2015.
- */
 public class XnorGateComponent extends MultiInputGateComponent {
     public XnorGateComponent(float positionX, float positionY) {
         super(positionX, positionY, 2);

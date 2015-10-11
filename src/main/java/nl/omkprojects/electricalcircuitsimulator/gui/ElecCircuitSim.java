@@ -4,9 +4,6 @@ import nl.omkprojects.electricalcircuitsimulator.circuit.VirtualCircuit;
 
 import javax.swing.*;
 
-/**
- * Created by Olle on 06-10-2015.
- */
 public class ElecCircuitSim extends JFrame {
     private JPanel rootPanel;
     private JSplitPane mainSplitPanel;

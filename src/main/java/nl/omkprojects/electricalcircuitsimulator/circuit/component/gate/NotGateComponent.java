@@ -4,9 +4,6 @@ import nl.omkprojects.electricalcircuitsimulator.circuit.graphics.GraphicsWrappe
 
 import java.awt.*;
 
-/**
- * Created by Olle on 06-10-2015.
- */
 public class NotGateComponent extends SingleInputGateComponent {
     public NotGateComponent(float positionX, float positionY) {
         super(positionX, positionY);

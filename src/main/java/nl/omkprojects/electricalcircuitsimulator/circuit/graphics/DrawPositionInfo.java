@@ -1,8 +1,5 @@
 package nl.omkprojects.electricalcircuitsimulator.circuit.graphics;
 
-/**
- * Created by Olle on 07-10-2015.
- */
 public class DrawPositionInfo {
     public float x;
     public float y;

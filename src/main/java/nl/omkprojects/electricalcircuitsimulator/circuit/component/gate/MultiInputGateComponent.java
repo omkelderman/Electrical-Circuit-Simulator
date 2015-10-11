@@ -2,9 +2,6 @@ package nl.omkprojects.electricalcircuitsimulator.circuit.component.gate;
 
 import java.awt.*;
 
-/**
- * Created by Olle on 07-10-2015.
- */
 public abstract class MultiInputGateComponent extends AbstractGateComponent {
     public MultiInputGateComponent(float positionX, float positionY, int inputCount) {
         super(positionX, positionY, validateInputCount(inputCount));

@@ -4,9 +4,6 @@ import nl.omkprojects.electricalcircuitsimulator.circuit.VirtualCircuit;
 import nl.omkprojects.electricalcircuitsimulator.circuit.component.gate.*;
 import nl.omkprojects.electricalcircuitsimulator.gui.ElecCircuitSim;
 
-/**
- * Created by Olle on 06-10-2015.
- */
 public class App {
     public static void main(String[] args) {
         VirtualCircuit virtualCircuit = new VirtualCircuit();

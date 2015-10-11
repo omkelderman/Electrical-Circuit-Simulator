@@ -9,9 +9,6 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Olle on 06-10-2015.
- */
 public class VirtualCircuit {
     private static final float ZOOM_CONSTANT = 1.05f;
 

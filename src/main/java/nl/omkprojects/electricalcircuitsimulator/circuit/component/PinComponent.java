@@ -4,9 +4,6 @@ import nl.omkprojects.electricalcircuitsimulator.circuit.graphics.GraphicsWrappe
 
 import java.awt.*;
 
-/**
- * Created by Olle on 07-10-2015.
- */
 public class PinComponent extends AbstractCircuitComponent {
     public PinComponent(float positionX, float positionY) {
         super(positionX, positionY);

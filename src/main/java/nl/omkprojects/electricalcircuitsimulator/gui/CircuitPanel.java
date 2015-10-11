@@ -9,9 +9,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
 
-/**
- * Created by Olle on 06-10-2015.
- */
 public class CircuitPanel extends JPanel {
     private VirtualCircuit virtualCircuit;
 

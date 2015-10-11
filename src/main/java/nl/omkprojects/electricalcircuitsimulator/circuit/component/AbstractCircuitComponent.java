@@ -7,9 +7,6 @@ import nl.omkprojects.electricalcircuitsimulator.circuit.graphics.IPaintable;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Olle on 06-10-2015.
- */
 public abstract class AbstractCircuitComponent implements IPaintable {
     private DrawPositionInfo drawPositionInfo;
 
