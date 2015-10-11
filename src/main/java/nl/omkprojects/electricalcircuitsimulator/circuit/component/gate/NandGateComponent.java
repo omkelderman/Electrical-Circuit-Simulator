@@ -6,11 +6,19 @@ import java.awt.*;
 
 public class NandGateComponent extends MultiInputGateComponent {
     public NandGateComponent(float positionX, float positionY) {
-        super(positionX, positionY, 2);
+        this(positionX, positionY, 2);
+    }
+
+    public NandGateComponent(float positionX, float positionY, int inputCount) {
+        super(positionX, positionY, inputCount);
     }
 
     public NandGateComponent(float positionX, float positionY, Color color) {
-        super(positionX, positionY, color, 2);
+        this(positionX, positionY, color, 2);
+    }
+
+    public NandGateComponent(float positionX, float positionY, Color color, int inputCount) {
+        super(positionX, positionY, color, inputCount);
     }
 
     @Override

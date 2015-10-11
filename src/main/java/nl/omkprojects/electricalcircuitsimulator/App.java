@@ -10,32 +10,32 @@ public class App {
 
         float scale = 1f;
 
-        AndGateComponent andGateComponent = new AndGateComponent(30 * scale, 30 * scale);
+        AndGateComponent andGateComponent = new AndGateComponent(30 * scale, 30 * scale, 4);
         andGateComponent.setScale(scale);
         virtualCircuit.addComponent(andGateComponent);
 
-        NandGateComponent nandGateComponent = new NandGateComponent(80 * scale, 30 * scale);
+        NandGateComponent nandGateComponent = new NandGateComponent(100 * scale, 30 * scale, 4);
         nandGateComponent.setScale(scale);
         virtualCircuit.addComponent(nandGateComponent);
 
-        OrGateComponent orGateComponent = new OrGateComponent(30 * scale, 70 * scale);
+        OrGateComponent orGateComponent = new OrGateComponent(30 * scale, 100 * scale, 4);
         orGateComponent.setScale(scale);
         virtualCircuit.addComponent(orGateComponent);
 
-        NorGateComponent norGateComponent = new NorGateComponent(80 * scale, 70 * scale);
+        NorGateComponent norGateComponent = new NorGateComponent(100 * scale, 100 * scale, 4);
         norGateComponent.setScale(scale);
         virtualCircuit.addComponent(norGateComponent);
 
-        XorGateComponent xorGateComponent = new XorGateComponent(30 * scale, 110 * scale);
+        XorGateComponent xorGateComponent = new XorGateComponent(30 * scale, 170 * scale, 4);
         xorGateComponent.setScale(scale);
         xorGateComponent.setAngle(45);
         virtualCircuit.addComponent(xorGateComponent);
 
-        XnorGateComponent xnorGateComponent = new XnorGateComponent(80 * scale, 110 * scale);
+        XnorGateComponent xnorGateComponent = new XnorGateComponent(100 * scale, 170 * scale, 4);
         xnorGateComponent.setScale(scale);
         virtualCircuit.addComponent(xnorGateComponent);
 
-        NotGateComponent notGateComponent = new NotGateComponent(80 * scale, 150 * scale);
+        NotGateComponent notGateComponent = new NotGateComponent(100 * scale, 240 * scale);
         notGateComponent.setScale(scale);
         virtualCircuit.addComponent(notGateComponent);
 
