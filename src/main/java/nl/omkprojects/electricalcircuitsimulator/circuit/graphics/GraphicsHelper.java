@@ -10,28 +10,33 @@ import java.util.Stack;
  * Created by Olle on 06-10-2015.
  */
 public class GraphicsHelper {
-    private final Graphics2D g2;
+    private final Graphics2D graphics2D;
     private final Stack<DrawPositionInfo> relativeHistory = new Stack<>();
     private final Stack<Color> colorHistory = new Stack<>();
-    private DrawPositionInfo relativeDrawPosition = new DrawPositionInfo();
+    private DrawPositionInfo relativeDrawPosition;
 
-    public GraphicsHelper(Graphics2D g2) {
-        this.g2 = g2;
+    public GraphicsHelper(Graphics2D graphics2D) {
+        this(graphics2D, new DrawPositionInfo());
+    }
+
+    public GraphicsHelper(Graphics2D graphics2D, DrawPositionInfo initialDrawPositionInfo) {
+        this.graphics2D = graphics2D;
+        this.relativeDrawPosition = initialDrawPositionInfo;
     }
 
     public void setColor(Color c) {
         // push current color to stack
-        colorHistory.push(g2.getColor());
+        colorHistory.push(graphics2D.getColor());
 
         // update current color
-        g2.setColor(c);
+        graphics2D.setColor(c);
     }
 
     public void resetColor() {
         if (colorHistory.isEmpty()) throw new IllegalStateException("History is empty, cannot reset!");
 
         // pop from stack and update current color
-        g2.setColor(colorHistory.pop());
+        graphics2D.setColor(colorHistory.pop());
     }
 
     public void setRelativePositioning(DrawPositionInfo info) {
@@ -50,8 +55,8 @@ public class GraphicsHelper {
     }
 
     private void drawAndMaybeFill(Shape s, boolean fill) {
-        g2.draw(s);
-        if (fill) g2.fill(s);
+        graphics2D.draw(s);
+        if (fill) graphics2D.fill(s);
     }
 
     public void drawCircle(float x, float y, float radius) {
@@ -84,7 +89,7 @@ public class GraphicsHelper {
     public void drawLine(float x1, float y1, float x2, float y2) {
         XY xy1 = relativeDrawPosition.getAbsoluteXY(x1, y1);
         XY xy2 = relativeDrawPosition.getAbsoluteXY(x2, y2);
-        g2.draw(new Line2D.Float(xy1.x, xy1.y, xy2.x, xy2.y));
+        graphics2D.draw(new Line2D.Float(xy1.x, xy1.y, xy2.x, xy2.y));
     }
 
 //    public void drawLine(float x1, float y1, float x2, float y2, float thickness) {

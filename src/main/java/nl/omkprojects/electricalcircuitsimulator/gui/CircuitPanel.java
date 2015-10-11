@@ -2,7 +2,6 @@ package nl.omkprojects.electricalcircuitsimulator.gui;
 
 import nl.omkprojects.electricalcircuitsimulator.circuit.VirtualCircuit;
 import nl.omkprojects.electricalcircuitsimulator.circuit.graphics.DrawPositionInfo;
-import nl.omkprojects.electricalcircuitsimulator.circuit.graphics.GraphicsHelper;
 
 import javax.swing.*;
 import java.awt.*;
@@ -86,12 +85,11 @@ public class CircuitPanel extends JPanel {
     }
 
     @Override
-    public void paint(Graphics g) {
-        super.paint(g);
+    public void paint(Graphics graphics) {
+        super.paint(graphics);
 
-        if (g instanceof Graphics2D) {
-            Graphics2D g2 = (Graphics2D) g;
-            virtualCircuit.render(new GraphicsHelper(g2));
+        if (graphics instanceof Graphics2D) {
+            virtualCircuit.render((Graphics2D) graphics);
         } else {
             System.err.println("No Graphics2D available...");
         }
