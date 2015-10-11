@@ -54,7 +54,7 @@ public abstract class AbstractCircuitComponent implements IPaintable {
     }
 
     @Override
-    public void render(GraphicsWrapper g) {
+    public final void render(GraphicsWrapper g) {
         // set relative position
         g.setRelativePositioning(drawPositionInfo);
 
