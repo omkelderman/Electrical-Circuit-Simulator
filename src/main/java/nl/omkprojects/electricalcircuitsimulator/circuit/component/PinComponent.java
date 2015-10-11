@@ -1,6 +1,6 @@
 package nl.omkprojects.electricalcircuitsimulator.circuit.component;
 
-import nl.omkprojects.electricalcircuitsimulator.circuit.graphics.GraphicsHelper;
+import nl.omkprojects.electricalcircuitsimulator.circuit.graphics.GraphicsWrapper;
 
 import java.awt.*;
 
@@ -13,7 +13,7 @@ public class PinComponent extends AbstractCircuitComponent {
     }
 
     @Override
-    public void render(GraphicsHelper g) {
+    public void render(GraphicsWrapper g) {
         g.setColor(Color.RED);
         g.drawCircle(0, 0, 2, true);
         g.resetColor();

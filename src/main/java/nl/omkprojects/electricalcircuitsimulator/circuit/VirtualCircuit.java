@@ -3,7 +3,7 @@ package nl.omkprojects.electricalcircuitsimulator.circuit;
 
 import nl.omkprojects.electricalcircuitsimulator.circuit.component.AbstractCircuitComponent;
 import nl.omkprojects.electricalcircuitsimulator.circuit.graphics.DrawPositionInfo;
-import nl.omkprojects.electricalcircuitsimulator.circuit.graphics.GraphicsHelper;
+import nl.omkprojects.electricalcircuitsimulator.circuit.graphics.GraphicsWrapper;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -55,7 +55,7 @@ public class VirtualCircuit {
     }
 
     public void render(Graphics2D graphics2D) {
-        GraphicsHelper g = new GraphicsHelper(graphics2D, drawPositionInfo);
+        GraphicsWrapper g = new GraphicsWrapper(graphics2D, drawPositionInfo);
         for (AbstractCircuitComponent component : componentList) {
             g.setRelativePositioning(component.getDrawPositionInfo());
             component.render(g);

@@ -1,6 +1,6 @@
 package nl.omkprojects.electricalcircuitsimulator.circuit.component.gate;
 
-import nl.omkprojects.electricalcircuitsimulator.circuit.graphics.GraphicsHelper;
+import nl.omkprojects.electricalcircuitsimulator.circuit.graphics.GraphicsWrapper;
 
 import java.awt.*;
 
@@ -17,7 +17,7 @@ public class NandGateComponent extends MultiInputGateComponent {
     }
 
     @Override
-    public void renderGateComponent(GraphicsHelper g) {
+    public void renderGateComponent(GraphicsWrapper g) {
         g.drawLine(-10, -10, -10, 10);
         g.drawLine(-10, -10, 0, -10);
         g.drawLine(-10, 10, 0, 10);

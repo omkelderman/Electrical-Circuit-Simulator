@@ -1,7 +1,7 @@
 package nl.omkprojects.electricalcircuitsimulator.circuit.component;
 
 import nl.omkprojects.electricalcircuitsimulator.circuit.graphics.DrawPositionInfo;
-import nl.omkprojects.electricalcircuitsimulator.circuit.graphics.GraphicsHelper;
+import nl.omkprojects.electricalcircuitsimulator.circuit.graphics.GraphicsWrapper;
 import nl.omkprojects.electricalcircuitsimulator.circuit.graphics.IPaintable;
 
 import java.util.ArrayList;
@@ -61,7 +61,7 @@ public abstract class AbstractCircuitComponent implements IPaintable {
     }
 
     @Override
-    public void render(GraphicsHelper g) {
+    public void render(GraphicsWrapper g) {
         // DEBUG: draw anchor-point
         //g.drawCircle(0, 0, 2, true);
 

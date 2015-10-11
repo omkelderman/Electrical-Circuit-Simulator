@@ -9,17 +9,17 @@ import java.util.Stack;
 /**
  * Created by Olle on 06-10-2015.
  */
-public class GraphicsHelper {
+public class GraphicsWrapper {
     private final Graphics2D graphics2D;
     private final Stack<DrawPositionInfo> relativeHistory = new Stack<>();
     private final Stack<Color> colorHistory = new Stack<>();
     private DrawPositionInfo relativeDrawPosition;
 
-    public GraphicsHelper(Graphics2D graphics2D) {
+    public GraphicsWrapper(Graphics2D graphics2D) {
         this(graphics2D, new DrawPositionInfo());
     }
 
-    public GraphicsHelper(Graphics2D graphics2D, DrawPositionInfo initialDrawPositionInfo) {
+    public GraphicsWrapper(Graphics2D graphics2D, DrawPositionInfo initialDrawPositionInfo) {
         this.graphics2D = graphics2D;
         this.relativeDrawPosition = initialDrawPositionInfo;
     }

@@ -2,7 +2,7 @@ package nl.omkprojects.electricalcircuitsimulator.circuit.component.gate;
 
 import nl.omkprojects.electricalcircuitsimulator.circuit.component.AbstractCircuitComponent;
 import nl.omkprojects.electricalcircuitsimulator.circuit.component.PinComponent;
-import nl.omkprojects.electricalcircuitsimulator.circuit.graphics.GraphicsHelper;
+import nl.omkprojects.electricalcircuitsimulator.circuit.graphics.GraphicsWrapper;
 
 import java.awt.*;
 
@@ -49,7 +49,7 @@ public abstract class AbstractGateComponent extends AbstractCircuitComponent {
     }
 
     @Override
-    public final void render(GraphicsHelper g) {
+    public final void render(GraphicsWrapper g) {
         // first render gate
         g.setColor(color);
         renderInputLines(g);
@@ -61,16 +61,16 @@ public abstract class AbstractGateComponent extends AbstractCircuitComponent {
         super.render(g);
     }
 
-    private void renderInputLines(GraphicsHelper g) {
+    private void renderInputLines(GraphicsWrapper g) {
         for (int i = 0; i < inputPins.length; i++) {
             g.drawLine(inputPins[i].getPositionX() + 2, inputPins[i].getPositionY(), getInputLineX(i), inputPins[i].getPositionY());
         }
     }
 
 
-    protected abstract void renderGateComponent(GraphicsHelper g);
+    protected abstract void renderGateComponent(GraphicsWrapper g);
 
-    private void renderOutputLines(GraphicsHelper g) {
+    private void renderOutputLines(GraphicsWrapper g) {
         g.drawLine(getOutputLineX(), outputPin.getPositionY(), outputPin.getPositionX() - 2, outputPin.getPositionY());
     }
 
