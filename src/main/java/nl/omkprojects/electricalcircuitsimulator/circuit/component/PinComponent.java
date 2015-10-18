@@ -12,7 +12,7 @@ public class PinComponent extends AbstractCircuitComponent {
     @Override
     public void renderComponent(GraphicsWrapper g) {
         g.setColor(Color.RED);
-        g.drawCircle(0, 0, 2, true);
+        g.drawCircle(0, 0, 4, true);
         g.resetColor();
     }
 }

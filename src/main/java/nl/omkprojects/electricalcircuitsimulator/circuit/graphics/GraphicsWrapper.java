@@ -56,31 +56,50 @@ public class GraphicsWrapper {
         if (fill) graphics2D.fill(s);
     }
 
-    public void drawCircle(float x, float y, float radius) {
-        drawCircle(x, y, radius, false);
+    public void drawCircle(float x, float y, float diameter) {
+        drawEllipse(x, y, diameter, diameter);
     }
 
-    public void drawCircle(float x, float y, float radius, boolean fill) {
+    public void drawCircle(float x, float y, float diameter, boolean fill) {
+        drawEllipse(x, y, diameter, diameter, fill);
+    }
+
+    public void drawEllipse(float x, float y, float width, float height) {
+        drawEllipse(x, y, width, height, false);
+    }
+
+    public void drawEllipse(float x, float y, float width, float height, boolean fill) {
         XY xy = relativeDrawPosition.getAbsoluteXY(x, y);
-        radius = relativeDrawPosition.getAbsoluteScale(radius);
-        drawAndMaybeFill(new Ellipse2D.Float(xy.x - radius, xy.y - radius, radius * 2, radius * 2), fill);
+        width = relativeDrawPosition.getAbsoluteScale(width);
+        height = relativeDrawPosition.getAbsoluteScale(height);
+
+        Ellipse2D.Float ellipse = new Ellipse2D.Float(xy.x - (width / 2), xy.y - (height / 2), width, height);
+        drawAndMaybeFill(ellipse, fill);
     }
 
-    public void drawCircle(float x, float y, float radius, float startAngle, float endAngle) {
-        drawCircle(x, y, radius, startAngle, endAngle, false);
+    public void drawCircle(float x, float y, float diameter, float startAngle, float endAngle) {
+        drawEllipse(x, y, diameter, diameter, startAngle, endAngle, false);
     }
 
-    public void drawCircle(float x, float y, float radius, float startAngle, float endAngle, boolean fill) {
-        startAngle = relativeDrawPosition.getAbsoluteAngle(startAngle);
-        endAngle = relativeDrawPosition.getAbsoluteAngle(endAngle);
+    public void drawCircle(float x, float y, float diameter, float startAngle, float endAngle, boolean fill) {
+        drawEllipse(x, y, diameter, diameter, startAngle, endAngle, fill);
+    }
 
-        startAngle = -startAngle + 90;
-        endAngle = -endAngle + 90;
+    public void drawEllipse(float x, float y, float width, float height, float startAngle, float endAngle) {
+        drawEllipse(x, y, width, height, startAngle, endAngle, false);
+    }
 
+    public void drawEllipse(float x, float y, float width, float height, float startAngle, float endAngle, boolean fill) {
+        startAngle = -relativeDrawPosition.getAbsoluteAngle(startAngle) + 90;
+        endAngle = -relativeDrawPosition.getAbsoluteAngle(endAngle) + 90;
         float extentAngle = endAngle - startAngle;
+
         XY xy = relativeDrawPosition.getAbsoluteXY(x, y);
-        radius = relativeDrawPosition.getAbsoluteScale(radius);
-        drawAndMaybeFill(new Arc2D.Float(xy.x - radius, xy.y - radius, radius * 2, radius * 2, startAngle, extentAngle, Arc2D.OPEN), fill);
+        width = relativeDrawPosition.getAbsoluteScale(width);
+        height = relativeDrawPosition.getAbsoluteScale(height);
+
+        Arc2D.Float arc = new Arc2D.Float(xy.x - (width / 2), xy.y - (height / 2), width, height, startAngle, extentAngle, Arc2D.OPEN);
+        drawAndMaybeFill(arc, fill);
     }
 
     public void drawLine(float x1, float y1, float x2, float y2) {

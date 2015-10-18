@@ -23,11 +23,11 @@ public class NorGateComponent extends MultiInputGateComponent {
 
     @Override
     public void renderGateComponent(GraphicsWrapper g) {
-        g.drawCircle(-24, 0, 14.87f, 47.73f, 132.27f);
+        g.drawCircle(-24, 0, 29.74f, 47.73f, 132.27f);
         g.drawLine(-13, -10, 0, -10);
         g.drawLine(-13, 10, 0, 10);
-        g.drawCircle(0, 0, 10, 0, 180);
-        g.drawCircle(12, 0, 2);
+        g.drawCircle(0, 0, 20, 0, 180);
+        g.drawCircle(12, 0, 4);
     }
 
     @Override

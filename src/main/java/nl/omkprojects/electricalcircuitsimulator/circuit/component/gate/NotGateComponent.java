@@ -18,7 +18,7 @@ public class NotGateComponent extends SingleInputGateComponent {
         g.drawLine(-10, -10, -10, 10);
         g.drawLine(-10, -10, 10, 0);
         g.drawLine(-10, 10, 10, 0);
-        g.drawCircle(12, 0, 2);
+        g.drawCircle(12, 0, 4);
     }
 
     @Override
