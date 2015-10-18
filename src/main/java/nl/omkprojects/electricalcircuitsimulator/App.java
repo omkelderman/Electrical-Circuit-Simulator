@@ -8,7 +8,7 @@ public class App {
     public static void main(String[] args) {
         VirtualCircuit virtualCircuit = new VirtualCircuit();
 
-        float scale = 1f;
+        final float scale = 1f;
 
         AndGateComponent andGateComponent = new AndGateComponent(30 * scale, 30 * scale, 4);
         andGateComponent.setScale(scale);
@@ -28,7 +28,6 @@ public class App {
 
         XorGateComponent xorGateComponent = new XorGateComponent(30 * scale, 170 * scale, 4);
         xorGateComponent.setScale(scale);
-        xorGateComponent.setAngle(45);
         virtualCircuit.addComponent(xorGateComponent);
 
         XnorGateComponent xnorGateComponent = new XnorGateComponent(100 * scale, 170 * scale, 4);

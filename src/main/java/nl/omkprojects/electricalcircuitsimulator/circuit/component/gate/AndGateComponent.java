@@ -23,9 +23,10 @@ public class AndGateComponent extends MultiInputGateComponent {
 
     @Override
     public void renderGateComponent(GraphicsWrapper g) {
-        g.drawLine(-10, -10, -10, 10);
-        g.drawLine(-10, -10, 0, -10);
-        g.drawLine(-10, 10, 0, 10);
-        g.drawCircle(0, 0, 20, 0, 180);
+        float halfInputHeight = inputCount * 5;
+        g.drawLine(-10, -halfInputHeight, -10, halfInputHeight);
+        g.drawLine(-10, -halfInputHeight, 0, -halfInputHeight);
+        g.drawLine(-10, halfInputHeight, 0, halfInputHeight);
+        g.drawEllipse(0, 0, 20, halfInputHeight * 2, 0, 180);
     }
 }
